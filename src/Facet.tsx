@@ -1,4 +1,4 @@
-import { Facet as FacetType } from "@yext/answers-core";
+import { Facet as FacetType, FacetOption } from "@yext/answers-core";
 import classnames from "classnames";
 import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
@@ -8,9 +8,10 @@ type Props = {
   //Insert Props Here
   facet: FacetType;
   maxOptions?: number;
+  onSelectFacet: (option: FacetOption) => void;
 };
 
-const Facet: React.FC<Props> = ({ facet, maxOptions = 10 }) => {
+const Facet: React.FC<Props> = ({ facet, maxOptions = 10, onSelectFacet }) => {
   const [expanded, setExpanded] = useState(true);
 
   const filteredOptions = facet.options.filter((o, i) => i < maxOptions);
@@ -24,12 +25,9 @@ const Facet: React.FC<Props> = ({ facet, maxOptions = 10 }) => {
           {facet.displayName}
         </div>
         <div
-          className={classnames(
-            "text-gray-500 transition ease-in-out transfrom rotate-90",
-            {
-              "rotate-90": expanded,
-            }
-          )}
+          className={classnames("text-gray-500 transfrom rotate-180", {
+            "rotate-90": expanded,
+          })}
         >
           <FaChevronRight />
         </div>
@@ -37,7 +35,11 @@ const Facet: React.FC<Props> = ({ facet, maxOptions = 10 }) => {
       {expanded && (
         <div className="mt-2">
           {filteredOptions.map((o) => (
-            <div className="font-light text-gray-500 flex items-center mb-1 group cursor-pointer">
+            <div
+              className="font-light text-gray-500 flex items-center mb-1 group cursor-pointer"
+              key={o.displayName}
+              onClick={() => onSelectFacet(o)}
+            >
               <div
                 className={classnames(
                   "w-4 h-4 border mr-2 rounded-sm flex items-center justify-center",
@@ -49,7 +51,10 @@ const Facet: React.FC<Props> = ({ facet, maxOptions = 10 }) => {
               >
                 {o.selected && <MdCheck className="text-white" />}
               </div>
-              {o.displayName}
+              {o.displayName}{" "}
+              <span className="text-xs bg-gray-100 px-1 rounded-full text-gray-600 ml-2">
+                {o.count}
+              </span>
             </div>
           ))}
         </div>

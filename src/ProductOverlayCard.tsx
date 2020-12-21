@@ -30,10 +30,10 @@ const ProductOverlayCard = ({ product, onClose }: Props) => {
           </div>
         </div>
         <div className="grid grid-cols-6">
-          {product.photoGallery.map((i) => (
+          {product.photoGallery.map((i, j) => (
             <div
-              key={i.image.sourceUrl}
-              className="px-2 flex items-center"
+              key={j}
+              className="px-2 flex items-center hover:opactiy-70"
               onMouseEnter={() => setSelectedImageURL(i.image.url)}
             >
               <div>

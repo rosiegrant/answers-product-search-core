@@ -26,11 +26,10 @@ function App() {
     results,
     facets,
     updateAutocomplete,
+    toggleFacet,
     querySuggestions,
     entities: products,
   } = useAnswersVertical<Product>(answers, "products");
-
-  console.log(facets);
 
   return (
     <div className="flex">
@@ -43,15 +42,23 @@ function App() {
           querySuggestions={querySuggestions}
         />
         <div className="flex flex-col divide-y px-4 pb-4 ">
-          {facets.map((f) => (
-            <Facet key={f.fieldId} facet={f} />
-          ))}
+          {facets &&
+            facets.map((f) => (
+              <Facet
+                key={f.fieldId}
+                facet={f}
+                onSelectFacet={(o) => toggleFacet(f.displayName, o.displayName)}
+              />
+            ))}
         </div>
       </div>
       <div className="p-4 flex-grow">
-        {/* <div>
-        <div>Sort By</div>
-      </div> */}
+        <div className="flex justify-between items-center">
+          <div className="text-sm text-gray-500">
+            Showing {results?.results.length} of {results?.resultsCount} glasses
+          </div>
+          <div>Sort By</div>
+        </div>
         <div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-4 ">
           {products.map((p, i) => {
             return (
@@ -67,10 +74,10 @@ function App() {
       {quickLookProduct && (
         <div>
           <div
-            className="absolute left-0 right-0 top-0 bottom-0 bg-gray-400 opacity-40 z-40"
+            className="fixed left-0 right-0 top-0 bottom-0 bg-gray-400 opacity-40 z-40"
             onClick={() => setQuickLookProduct(null)}
           ></div>
-          <div className="absolute left-0 right-0 top-0 bottom-0 z-50 flex items-center justify-center">
+          <div className="fixed left-0 right-0 top-0 bottom-0 z-50 flex items-center justify-center">
             <div className="w-1/2">
               <ProductOverlayCard
                 product={quickLookProduct}
