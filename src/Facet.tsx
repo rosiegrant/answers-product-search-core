@@ -16,7 +16,7 @@ const Facet: React.FC<Props> = ({ facet, maxOptions = 10, onSelectFacet }) => {
 
   const filteredOptions = facet.options.filter((o, i) => i < maxOptions);
   return (
-    <div className=" py-2">
+    <div className=" py-2 mb-3">
       <div
         className="flex justify-between items-center cursor-pointer"
         onClick={() => setExpanded((e) => !e)}
@@ -25,9 +25,12 @@ const Facet: React.FC<Props> = ({ facet, maxOptions = 10, onSelectFacet }) => {
           {facet.displayName}
         </div>
         <div
-          className={classnames("text-gray-500 transfrom rotate-180", {
-            "rotate-90": expanded,
-          })}
+          className={classnames(
+            "text-gray-500 transform ease-in-out transition",
+            {
+              "rotate-90": expanded,
+            }
+          )}
         >
           <FaChevronRight />
         </div>

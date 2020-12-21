@@ -47,7 +47,7 @@ const SearchBar: React.FC<Props> = ({
   return (
     <div className="relative mx-2 mt-2">
       <form
-        className="border-b py-2 px-4 mb-2 flex items-center focus-within:shodow-lg focus-within:border group text-gray-700"
+        className="py-2 px-2 mb-2 flex items-center focus-within:shodow-lg focus-within:border group text-gray-700"
         onSubmit={(e) => {
           e.preventDefault();
           if (selectedSuggestion > -1) {
@@ -68,7 +68,7 @@ const SearchBar: React.FC<Props> = ({
           value={query}
           placeholder={placeholder}
           onChange={handleChange}
-          className="w-full focus:outline-none"
+          className="w-full focus:outline-none font-light bg-transparent"
           onKeyDown={(e) => {
             if (e.key === "ArrowDown") {
               e.preventDefault();
@@ -92,7 +92,7 @@ const SearchBar: React.FC<Props> = ({
         )}
       </form>
       {showQuerySuggestion && (
-        <div className="absolute top-0 mt-12 left-0 right-0 bg-white text-gray-700 font-light border-b">
+        <div className="absolute top-0 mt-12 left-0 right-0 bg-white text-gray-700 font-light border-b z-50">
           {querySuggestions.map((q, i) => (
             <div
               onMouseDown={() => {

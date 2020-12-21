@@ -5,10 +5,11 @@ import { Product } from "./types";
 type Props = {
   //Insert Props Here
   product: Product;
+  addToCart: () => void;
   showQuickLook: () => void;
 };
 
-const ProductCard = ({ product, showQuickLook }: Props) => {
+const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
   const [mouseOver, setMouseOver] = useState(false);
 
   return (
@@ -17,7 +18,7 @@ const ProductCard = ({ product, showQuickLook }: Props) => {
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <div className="p-4">
+      <div className="p-4" onClick={showQuickLook}>
         <div className=" aspect-w-4 aspect-h-2">
           {product.photoGallery.length > 0 && (
             <div className="flex items-center  p-4">
@@ -45,7 +46,10 @@ const ProductCard = ({ product, showQuickLook }: Props) => {
           <FaSearchPlus className="mr-2" />
           Look
         </div>
-        <div className="flex justify-center items-center bg-gray-100 hover:bg-gray-200 px-2 py-2 cursor-pointer flex-grow">
+        <div
+          className="flex justify-center items-center bg-gray-100 hover:bg-gray-200 px-2 py-2 cursor-pointer flex-grow"
+          onClick={addToCart}
+        >
           <FaCartPlus className="mr-2" />
           Cart
         </div>

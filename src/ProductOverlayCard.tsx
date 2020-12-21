@@ -7,9 +7,10 @@ type Props = {
   //Insert Props Here
   product: Product;
   onClose: () => void;
+  addToCart: () => void;
 };
 
-const ProductOverlayCard = ({ product, onClose }: Props) => {
+const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
   const [selectedImageURL, setSelectedImageURL] = useState(
     product.photoGallery[2].image.url
   );
@@ -25,7 +26,7 @@ const ProductOverlayCard = ({ product, onClose }: Props) => {
       </div>
       <div className="p-4">
         <div className=" aspect-w-4 aspect-h-2 z-10 mb-2">
-          <div className="flex items-center  p-4">
+          <div className="flex items-center  p-4 overflow-hidden">
             <img src={selectedImageURL} alt="" width="100%" />
           </div>
         </div>
@@ -53,6 +54,7 @@ const ProductOverlayCard = ({ product, onClose }: Props) => {
       </div>
       <div className="grid grid-cols-2">
         <div
+          onClick={addToCart}
           className={classnames(
             buttonClassName,
             " border-t border-r border-gray-200"
