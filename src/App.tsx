@@ -1,6 +1,7 @@
 import { provideCore } from "@yext/answers-core";
 import React, { useState } from "react";
-import { FaCartPlus, FaChevronDown } from "react-icons/fa";
+import { FaCartPlus, FaChevronDown, FaSpinner } from "react-icons/fa";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useToasts } from "react-toast-notifications";
 import Facet from "./Facet";
 import Nav from "./Nav";
@@ -24,6 +25,7 @@ function App() {
   const {
     runSearch,
     setQuery,
+    loadMore,
     query,
     loading,
     results,
@@ -104,40 +106,50 @@ function App() {
               ))}
           </div>
         </div>
-        <div className="p-4 flex-grow">
-          <div className="flex justify-between items-center mb-2">
-            <div className="text-sm text-gray-500">
-              Showing {results?.results.length} of {results?.resultsCount}{" "}
-              glasses
+        {results && (
+          <div className="p-4 flex-grow">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-sm text-gray-500">
+                Showing {products.length} of {results?.resultsCount} glasses
+              </div>
+              <div className="text-gray-500 text-sm flex items-center hover:underline cursor-pointer">
+                Sort By <FaChevronDown className="ml-2" />
+              </div>
             </div>
-            <div className="text-gray-500 text-sm flex items-center hover:underline cursor-pointer">
-              Sort By <FaChevronDown className="ml-2" />
-            </div>
+            <InfiniteScroll
+              className="overflow-y-hidden"
+              hasMore={results!.resultsCount > products.length}
+              next={loadMore}
+              dataLength={products.length}
+              endMessage={
+                <div className="mt-12 mb-4 text-center text-gray-500 font-light text-sm">
+                  that's all...
+                </div>
+              }
+              loader={
+                <div className="h-12 flex items-center justify-center">
+                  <FaSpinner className="animate-spin text-gray-500" />
+                </div>
+              }
+            >
+              <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 overflow-y-hidden">
+                {products.map((p, i) => {
+                  return (
+                    <ProductCard
+                      key={p.id}
+                      product={p}
+                      showQuickLook={() => setQuickLookProduct(p)}
+                      addToCart={() => addProductToCard(p)}
+                    />
+                  );
+                })}
+              </div>
+            </InfiniteScroll>
           </div>
-          <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 ">
-            {products.map((p, i) => {
-              return (
-                <ProductCard
-                  key={p.id}
-                  product={p}
-                  showQuickLook={() => setQuickLookProduct(p)}
-                  addToCart={() => addProductToCard(p)}
-                />
-              );
-            })}
-          </div>
-          <div className="flex items-center justify-center">
-            <div className=" text-sm text-gray-500 px-4 py-1 hover:bg-gray-100 cursor-pointer rounded">
-              Load more
-            </div>
-          </div>
-        </div>
+        )}
         {quickLookProduct && (
           <div>
-            <div
-              className="fixed left-0 right-0 top-0 bottom-0 bg-gray-400 opacity-40 z-40"
-              onClick={() => setQuickLookProduct(null)}
-            ></div>
+            <div className="fixed left-0 right-0 top-0 bottom-0 bg-gray-400 opacity-80 z-40"></div>
             <div className="fixed left-0 right-0 top-0 bottom-0 z-50 flex items-center justify-center">
               <div className="w-1/2">
                 <ProductOverlayCard

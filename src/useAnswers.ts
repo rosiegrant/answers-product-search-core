@@ -50,12 +50,27 @@ export const useAnswersVertical = <T>(
       retrieveFacets: true,
       facetFilters,
     });
-    console.log(res.verticalResults.results);
     setVerticalResponse(res);
     setEntities(res.verticalResults.results.map((r) => r.rawData as T));
     setLoading(false);
     setLocalState((f) => {
       f.facets = (res.facets as Facet[]) || [];
+    });
+  };
+
+  const loadMore = async () => {
+    console.log("Loading More");
+    const res = await answers.verticalSearch({
+      query,
+      context: {},
+      verticalKey,
+      retrieveFacets: true,
+      facetFilters,
+      offset: entities.length,
+    });
+
+    setEntities((e) => {
+      return [...e, ...res.verticalResults.results.map((r) => r.rawData as T)];
     });
   };
 
@@ -100,5 +115,6 @@ export const useAnswersVertical = <T>(
     querySuggestions,
     entities,
     loading,
+    loadMore,
   };
 };

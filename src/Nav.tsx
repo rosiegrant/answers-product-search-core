@@ -18,12 +18,12 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
         Seaglass
       </div>
       <div className="flex items-center text-gray-700 px-4">
-        <div className="px-4 py-2 hover:underline cursor-pointer">Products</div>
-        <div className="px-4 py-2 hover:underline cursor-pointer">
+        <div className="px-4 py-3 hover:underline cursor-pointer">Products</div>
+        <div className="px-4 py-3 hover:underline cursor-pointer">
           Locations
         </div>
-        <div className="px-4 py-2 hover:underline cursor-pointer">Support</div>
-        <div className="px-4 py-2 hover:underline cursor-pointer">About Us</div>
+        <div className="px-4 py-3 hover:underline cursor-pointer">Support</div>
+        <div className="px-4 py-3 hover:underline cursor-pointer">About Us</div>
       </div>
       <div
         className="border-l p-4 text-gray-700 flex items-center"
