@@ -10,9 +10,7 @@ type ToastProps = {
 };
 
 const MyCustomToast = ({ children }: ToastProps) => (
-  <div className="bg-white border shadow-xl z-50 rounded mb-12 mr-4 mt-4 px-8 py-4">
-    {children}
-  </div>
+  <div className="">{children}</div>
 );
 
 ReactDOM.render(

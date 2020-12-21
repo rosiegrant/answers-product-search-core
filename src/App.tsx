@@ -1,6 +1,6 @@
 import { provideCore } from "@yext/answers-core";
 import React, { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaCartPlus, FaChevronDown } from "react-icons/fa";
 import { useToasts } from "react-toast-notifications";
 import Facet from "./Facet";
 import Nav from "./Nav";
@@ -64,10 +64,18 @@ function App() {
       }
       return updatedCart;
     });
-    addToast(`Added ${product.name} to cart`, {
-      appearance: "success",
-      autoDismiss: true,
-    });
+    addToast(
+      <div className="py-2 px-4 flex items-center font-light bg-gray-600 text-white text-sm  shadow-sm z-50 rounded-sm mb-2 mr-4 mt-4">
+        <FaCartPlus />
+        <div className="ml-2">Added</div>
+        <span className="font-medium ml-1">{product.name}</span>
+        <div className="ml-1">to cart</div>
+      </div>,
+      {
+        appearance: "success",
+        autoDismiss: true,
+      }
+    );
   };
 
   return (
