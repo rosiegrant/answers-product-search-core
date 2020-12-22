@@ -107,8 +107,6 @@ export const useAnswersVertical = <T>(
   return {
     results: verticalResponse?.verticalResults,
     facets,
-    query,
-    setQuery,
     toggleFacet,
     runSearch,
     updateAutocomplete,

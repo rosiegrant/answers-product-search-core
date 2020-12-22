@@ -92,7 +92,7 @@ const SearchBar: React.FC<Props> = ({
         )}
       </form>
       {showQuerySuggestion && (
-        <div className="absolute top-0 mt-12 left-0 right-0 bg-white text-gray-700 font-light border-b z-50">
+        <div className="absolute top-0 mt-10 left-0 right-0 bg-white text-gray-700 font-light border-b border-l border-r shadow-lg z-50">
           {querySuggestions.map((q, i) => (
             <div
               onMouseDown={() => {
