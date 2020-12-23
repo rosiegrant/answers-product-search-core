@@ -1,32 +1,28 @@
-import { VerticalResults } from "@yext/answers-core";
 import React from "react";
 import FlipMove from "react-flip-move";
 import { FaSpinner } from "react-icons/fa";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard from "./ProductCard";
+import { useAnswersStore } from "./store/useAnswersStore";
 import { Product } from "./types";
 
 type Props = {
   //Insert Props Here
-  results: VerticalResults;
-  products: Product[];
-  loadMore: () => void;
   onQuickLook: (product: Product) => void;
   onAddToCart: (product: Product) => void;
 };
 
-const ProductGrid: React.FC<Props> = ({
-  results,
-  products,
-  loadMore,
-  onQuickLook,
-  onAddToCart,
-}) => {
+const ProductGrid: React.FC<Props> = ({ onQuickLook, onAddToCart }) => {
+  const {
+    state: { verticalresults, entities: products },
+    actions: { loadMore },
+  } = useAnswersStore();
+
   return (
     <InfiniteScroll
       className="overflow-x-auto"
       style={{ overflow: "visible" }}
-      hasMore={results!.resultsCount > products.length}
+      hasMore={verticalresults!.resultsCount > products.length}
       next={loadMore}
       dataLength={products.length}
       endMessage={

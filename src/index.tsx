@@ -4,6 +4,7 @@ import { ToastProvider } from "react-toast-notifications";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import AnswersStore from "./store/AnswersStore";
 
 type ToastProps = {
   children: React.ReactNode;
@@ -16,7 +17,9 @@ const MyCustomToast = ({ children }: ToastProps) => (
 ReactDOM.render(
   <React.StrictMode>
     <ToastProvider components={{ Toast: MyCustomToast }}>
-      <App />
+      <AnswersStore>
+        <App />
+      </AnswersStore>
     </ToastProvider>
   </React.StrictMode>,
   document.getElementById("root")

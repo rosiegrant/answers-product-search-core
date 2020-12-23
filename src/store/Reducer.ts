@@ -1,28 +1,62 @@
-const Reducer = (state, action) => {
+import {
+  AutoCompleteResult,
+  Facet,
+  VerticalSearchResponse,
+} from "@yext/answers-core";
+import { InitialStateType } from "./AnswersStore";
+export type Action =
+  | { type: "SET_LOADING"; loading: boolean }
+  | { type: "SET_VERTICAL_RESPONSE"; response: VerticalSearchResponse }
+  | { type: "SET_QUERY_SUGGESTIONS"; querySuggestions: AutoCompleteResult[] }
+  | { type: "APPEND_ENTITIES"; entities: any[] }
+  | { type: "SET_QUERY"; query: string }
+  | { type: "UPDATE_FACETS"; facets: Facet[] };
+
+const reducer = (state: InitialStateType, action: Action): InitialStateType => {
   switch (action.type) {
-    case "SET_POSTS":
+    case "SET_LOADING":
       return {
         ...state,
-        posts: action.payload,
+        loading: action.loading,
       };
-    case "ADD_POST":
+    case "SET_QUERY":
+      const { query } = action;
       return {
         ...state,
-        posts: state.posts.concat(action.payload),
+        query,
       };
-    case "REMOVE_POST":
+    case "SET_VERTICAL_RESPONSE":
+      const { response } = action;
       return {
         ...state,
-        posts: state.posts.filter((post) => post.id !== action.payload),
+        loading: false,
+        verticalresults: response.verticalResults,
+        entities: response.verticalResults.results.map(
+          (r: any) => r.rawData as any
+        ),
+        facets: (response.facets as any) as Facet[],
       };
-    case "SET_ERROR":
+    case "SET_QUERY_SUGGESTIONS":
+      const { querySuggestions } = action;
       return {
         ...state,
-        error: action.payload,
+        querySuggestions,
       };
+    case "APPEND_ENTITIES":
+      return {
+        ...state,
+        entities: [...state.entities, ...action.entities],
+      };
+    case "UPDATE_FACETS":
+      const { facets } = action;
+      return {
+        ...state,
+        facets,
+      };
+
     default:
       return state;
   }
 };
 
-export default Reducer;
+export default reducer;

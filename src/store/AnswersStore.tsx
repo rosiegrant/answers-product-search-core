@@ -1,25 +1,41 @@
+import { AutoCompleteResult, Facet, VerticalResults } from "@yext/answers-core";
 import { createContext, Dispatch, useReducer } from "react";
-import Reducer from "./Reducer";
+import reducer, { Action } from "./reducer";
 
-type StateType = {
+export type InitialStateType = {
   loading: boolean;
   query: string;
+  verticalresults?: VerticalResults;
+  entities: any[];
+  facets: Facet[];
+  querySuggestions: AutoCompleteResult[];
 };
 
-const initialState: StateType = {
+const initialState: InitialStateType = {
   loading: false,
   query: "",
+  verticalresults: undefined,
+  entities: [],
+  facets: [],
+  querySuggestions: [],
 };
 
+export const AppContext = createContext<{
+  state: InitialStateType;
+  dispatch: Dispatch<Action>;
+}>({
+  state: initialState,
+  dispatch: () => null,
+});
+
 const AnswersStore = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = useReducer(Reducer, initialState);
+  //@ts-ignore
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Context.Provider value={[state, dispatch]}>{children}</Context.Provider>
+    <AppContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 
-export const Context = createContext([
-  initialState,
-  (() => {}) as Dispatch<"SET_POSTS">,
-]);
 export default AnswersStore;

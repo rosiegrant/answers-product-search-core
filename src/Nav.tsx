@@ -1,29 +1,22 @@
-import { AutoCompleteResult } from "@yext/answers-core";
 import React, { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import SearchBar from "./SearchBar";
+import { useAnswersStore } from "./store/useAnswersStore";
 import { Product } from "./types";
 
 type Props = {
   //Insert Props Here
-  runSearch: () => void;
-  loading: boolean;
-  querySuggestions: AutoCompleteResult[];
-  updateAutocomplete: (q: string) => void;
   shoppingCart: {
     quantity: number;
     product: Product;
   }[];
 };
 
-const Nav: React.FC<Props> = ({
-  shoppingCart,
-  updateAutocomplete,
-  querySuggestions,
-  loading,
-  runSearch,
-}) => {
+const Nav: React.FC<Props> = ({ shoppingCart }) => {
   const [showingCart, setShowingCart] = useState(false);
+  const { state, actions } = useAnswersStore();
+  const { loading, querySuggestions } = state;
+  const { updateAutocomplete, runSearch } = actions;
   return (
     <div className="border-b flex justify-between items-stretch ">
       <div className="text-xl font-light px-4 text-green-700 flex items-center">
@@ -38,13 +31,7 @@ const Nav: React.FC<Props> = ({
         <div className="px-4 py-3 hover:underline cursor-pointer">About Us</div>
       </div>
       <div className="flex">
-        <SearchBar
-          runSearch={runSearch}
-          placeholder="Search for glasses..."
-          loading={loading}
-          updateAutocomplete={updateAutocomplete}
-          querySuggestions={querySuggestions}
-        />
+        <SearchBar placeholder="Search for glasses..." />
         <div
           className="border-l p-4 text-gray-700 flex items-center"
           onMouseEnter={() => setShowingCart(true)}

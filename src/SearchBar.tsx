@@ -1,26 +1,21 @@
-import { AutoCompleteResult } from "@yext/answers-core";
 import classnames from "classnames";
 import React, { useRef, useState } from "react";
 import { FaSpinner, FaTimesCircle } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
+import { useAnswersStore } from "./store/useAnswersStore";
 
 type Props = {
   //Insert Props Here
-  runSearch: (query: string) => void;
+
   placeholder?: string;
-  loading?: boolean;
-  querySuggestions: AutoCompleteResult[];
-  updateAutocomplete: (query: string) => void;
 };
 
-const SearchBar: React.FC<Props> = ({
-  runSearch,
-  placeholder = "Search ...",
-  loading,
-  querySuggestions = [],
-  updateAutocomplete,
-}) => {
+const SearchBar: React.FC<Props> = ({ placeholder = "Search ..." }) => {
   const inputElement = useRef(null);
+
+  const { state, actions } = useAnswersStore();
+  const { loading, querySuggestions } = state;
+  const { updateAutocomplete, runSearch } = actions;
 
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -47,7 +42,7 @@ const SearchBar: React.FC<Props> = ({
   return (
     <div className="relative mx-2 mt-2">
       <form
-        className="py-2 px-2 mb-2 flex items-center focus-within:shodow-lg focus-within:border group text-gray-700"
+        className="py-2 px-4 mb-2 flex items-center focus-within:shodow-lg focus-within:border group text-gray-700 bg-gray-100 rounded-full"
         onSubmit={(e) => {
           e.preventDefault();
           if (selectedSuggestion > -1) {

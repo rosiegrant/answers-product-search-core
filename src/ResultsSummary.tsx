@@ -1,17 +1,18 @@
 import React from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { useAnswersStore } from "./store/useAnswersStore";
 
 type Props = {
   //Insert Props Here
-  totalResults: number;
-  visibleResults: number;
 };
 
-const ResultsSummary: React.FC<Props> = ({ totalResults, visibleResults }) => {
+const ResultsSummary: React.FC<Props> = () => {
+  const { state } = useAnswersStore();
+  const { verticalresults, entities } = state;
   return (
     <div className="flex justify-between items-center mb-2">
       <div className="text-sm text-gray-500">
-        Showing {visibleResults} of {totalResults} glasses
+        Showing {verticalresults?.resultsCount} of {entities.length} glasses
       </div>
       <div className="text-gray-500 text-sm flex items-center hover:underline cursor-pointer">
         Sort By <FaChevronDown className="ml-2" />
