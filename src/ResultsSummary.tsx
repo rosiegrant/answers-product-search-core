@@ -1,12 +1,13 @@
 import React from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaFilter } from "react-icons/fa";
 import { useAnswersStore } from "./store/useAnswersStore";
 
 type Props = {
   //Insert Props Here
+  onToggleFilters: () => void;
 };
 
-const ResultsSummary: React.FC<Props> = () => {
+const ResultsSummary: React.FC<Props> = ({ onToggleFilters }) => {
   const { state } = useAnswersStore();
   const { verticalresults, entities } = state;
   return (
@@ -14,8 +15,14 @@ const ResultsSummary: React.FC<Props> = () => {
       <div className="text-sm text-gray-500">
         Showing {entities.length} of {verticalresults?.resultsCount} glasses
       </div>
-      <div className="text-gray-500 text-sm flex items-center hover:underline cursor-pointer">
+      <div className="hidden md:flex text-gray-500 text-sm items-center hover:underline cursor-pointer">
         Sort By <FaChevronDown className="ml-2" />
+      </div>
+      <div
+        className="flex md:hidden text-gray-500 text-sm items-center hover:underline cursor-pointer"
+        onClick={onToggleFilters}
+      >
+        Filter <FaFilter className="ml-2" />
       </div>
     </div>
   );

@@ -77,7 +77,7 @@ const SearchBar: React.FC<Props> = ({ placeholder = "Search ..." }) => {
         {loading && <FaSpinner className="animate-spin text-gray-500" />}
         {!loading && query.length > 0 && (
           <FaTimesCircle
-            className="text-gray-300 cursor-pointer group-hover:opacity-100 opacity-0"
+            className="text-gray-500 cursor-pointer group-hover:opacity-100 opacity-0 text-xl"
             onClick={() => {
               setQuery("");
               runSearch("");

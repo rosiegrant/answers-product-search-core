@@ -36,6 +36,7 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
               key={j}
               className="px-2 flex items-center hover:opactiy-70"
               onMouseEnter={() => setSelectedImageURL(i.image.url)}
+              onTouchStart={() => setSelectedImageURL(i.image.url)}
             >
               <div>
                 <img src={i.image.url} />
