@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import React, { useState } from "react";
 import { FaCartPlus, FaSearchPlus } from "react-icons/fa";
 import { Product } from "./types";
@@ -14,7 +15,10 @@ const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
 
   return (
     <div
-      className="hover:shadow-xl hover:bg-white hover:z-30 hover:z-100 rounded cursor-pointer transform hover:scale-105 transition ease-in-out group overflow-hidden relative"
+      className={classnames(
+        "rounded cursor-pointer transform  transition ease-in-out group overflow-hidden relative",
+        "md:hover:shadow-xl md:hover:bg-white md:hover:z-30 md:hover:scale-105 md:hover:z-100"
+      )}
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
@@ -38,7 +42,7 @@ const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
         <div className=" font-medium mt-2 text-sm">${product.c_price}</div>
       </div>
 
-      <div className="flex opacity-0 group-hover:opacity-100 text-gray-500 uppercase text-xs transition ease-in-out  justify-center">
+      <div className="flex opacity-0 md:group-hover:opacity-100 text-gray-500 uppercase text-xs transition ease-in-out  justify-center">
         <div
           className="flex justify-center items-center bg-gray-100 hover:bg-gray-200 px-2 py-2 cursor-pointer flex-grow"
           onClick={showQuickLook}

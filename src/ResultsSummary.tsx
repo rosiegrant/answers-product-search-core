@@ -12,7 +12,7 @@ const ResultsSummary: React.FC<Props> = () => {
   return (
     <div className="flex justify-between items-center mb-2">
       <div className="text-sm text-gray-500">
-        Showing {verticalresults?.resultsCount} of {entities.length} glasses
+        Showing {entities.length} of {verticalresults?.resultsCount} glasses
       </div>
       <div className="text-gray-500 text-sm flex items-center hover:underline cursor-pointer">
         Sort By <FaChevronDown className="ml-2" />
