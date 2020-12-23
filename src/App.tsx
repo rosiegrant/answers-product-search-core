@@ -113,7 +113,15 @@ function App() {
       )}
       <div className="fixed right-0 bottom-0 border-l border-t bg-white z-50 text-xs text-gray-500 p-4 w-48">
         <div>
-          This is an example React application build on top of Yext Answers.{" "}
+          This is an example React application built on top of{" "}
+          <a
+            href="https://www.yext.com/products/answers"
+            target="_blank"
+            className="underline"
+          >
+            Yext Answers
+          </a>
+          .{" "}
           <a
             href="https://github.com/Mxs2019/answers-product-search-core"
             target="_blank"
