@@ -1,14 +1,19 @@
+import { SortBy } from "@yext/answers-core";
 import { useContext } from "react";
+import RecentSearches from "recent-searches";
 import { answersCore, verticalKey } from "./../answers.config";
 import { AppContext } from "./AnswersStore";
 import { getFacetFilters, toggleFacetObject } from "./facetUtilties";
 
+const recentSearches = new RecentSearches();
+
 export const useAnswersStore = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { query, facets, entities } = state;
+  const { query, facets, entities, sortBys } = state;
 
   const runSearch = async (q: string = query) => {
     console.log(`Getting Results for ${q}`);
+    recentSearches.setRecentSearch(q);
 
     dispatch({
       type: "SET_LOADING",
@@ -32,14 +37,39 @@ export const useAnswersStore = () => {
     });
   };
 
-  const updateAutocomplete = async (q: string = query) => {
+  const fetchAutocomplete = async (q: string = query) => {
     const res = await answersCore.verticalAutoComplete({
       input: q,
       verticalKey,
     });
     dispatch({
-      type: "SET_QUERY_SUGGESTIONS",
+      type: "SET_AUTOCOMPLETE",
       querySuggestions: res.results,
+      recentSearches: recentSearches.getRecentSearches(q),
+    });
+  };
+
+  const updateSortBys = async (sortBys: SortBy[] | undefined) => {
+    dispatch({
+      type: "UPDATE_SORT_BYS",
+      sortBys,
+    });
+    dispatch({
+      type: "SET_LOADING",
+      loading: true,
+    });
+    console.log(sortBys);
+    const res = await answersCore.verticalSearch({
+      query,
+      context: {},
+      verticalKey,
+      retrieveFacets: true,
+      sortBys,
+      facetFilters: getFacetFilters(facets),
+    });
+    dispatch({
+      type: "SET_VERTICAL_RESPONSE",
+      response: res,
     });
   };
 
@@ -66,6 +96,7 @@ export const useAnswersStore = () => {
       context: {},
       verticalKey,
       retrieveFacets: true,
+      sortBys,
       facetFilters: getFacetFilters(updatedFacets),
     });
     dispatch({
@@ -93,6 +124,12 @@ export const useAnswersStore = () => {
 
   return {
     state,
-    actions: { runSearch, updateAutocomplete, toggleFacet, loadMore },
+    actions: {
+      runSearch,
+      fetchAutocomplete,
+      toggleFacet,
+      loadMore,
+      updateSortBys,
+    },
   };
 };

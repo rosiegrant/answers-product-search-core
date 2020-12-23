@@ -28,6 +28,7 @@
     "react-infinite-scroll-component": "^5.1.0",
     "react-scripts": "4.0.1",
     "react-toast-notifications": "^2.4.0",
+    "recent-searches": "^1.0.5",
     "string-to-color": "^2.2.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.0.3",

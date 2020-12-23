@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import React, { useRef, useState } from "react";
-import { FaSpinner, FaTimesCircle } from "react-icons/fa";
+import { FaRegClock, FaSpinner, FaTimesCircle } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
 import { useAnswersStore } from "./store/useAnswersStore";
 
@@ -14,16 +14,33 @@ const SearchBar: React.FC<Props> = ({ placeholder = "Search ..." }) => {
   const inputElement = useRef(null);
 
   const { state, actions } = useAnswersStore();
-  const { loading, querySuggestions } = state;
-  const { updateAutocomplete, runSearch } = actions;
+  const { loading, querySuggestions, recentSearches } = state;
+  const { fetchAutocomplete, runSearch } = actions;
 
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const [justSearched, setJustSearched] = useState(false);
 
+  const autocompleteOptions = [
+    ...recentSearches.map((s) => {
+      return {
+        value: s.query,
+        type: "RECENT",
+      };
+    }),
+    ...querySuggestions.map((s) => {
+      return {
+        ...s,
+        type: "SUGGESTION",
+      };
+    }),
+  ];
+
   const nextSuggestion = () => {
-    setSelectedSuggestion((s) => Math.min(s + 1, querySuggestions.length - 1));
+    setSelectedSuggestion((s) =>
+      Math.min(s + 1, autocompleteOptions.length - 1)
+    );
   };
 
   const prevSuggestion = () => {
@@ -32,81 +49,98 @@ const SearchBar: React.FC<Props> = ({ placeholder = "Search ..." }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-    updateAutocomplete(e.target.value);
+    fetchAutocomplete(e.target.value);
     setSelectedSuggestion(-1);
     setJustSearched(false);
   };
 
   const showQuerySuggestion =
-    isFocused && querySuggestions.length > 0 && !justSearched;
+    isFocused && autocompleteOptions.length > 0 && !justSearched;
   return (
-    <div className="relative mx-2 mt-2">
-      <form
-        className="py-2 px-4 mb-2 flex items-center focus-within:shodow-lg focus-within:border group text-gray-700 bg-gray-100 rounded-full"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (selectedSuggestion > -1) {
-            const query = querySuggestions[selectedSuggestion].value;
-            setQuery(query);
-            runSearch(query);
-          } else {
-            runSearch(query);
-          }
-          setJustSearched(true);
-        }}
+    <div className="relative m-2 flex items-center">
+      {isFocused && <div className="w-72"></div>}
+      <div
+        className={classnames(
+          "w-72 transition rounded-full ease-in-out bg-gray-100 relative duration-500 focus-within:z-50 focus-within:bg-white border border-transparent focus-within:border-gray-300 focus-within:absolute top-0"
+        )}
+        style={
+          isFocused
+            ? {
+                borderRadius: "1.2rem",
+              }
+            : {}
+        }
       >
-        <MdSearch className="mr-2 text-gray-600 text-xl" />
-        <input
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          ref={inputElement}
-          value={query}
-          placeholder={placeholder}
-          onChange={handleChange}
-          className="w-full focus:outline-none font-light bg-transparent"
-          onKeyDown={(e) => {
-            if (e.key === "ArrowDown") {
-              e.preventDefault();
-              nextSuggestion();
-            } else if (e.key === "ArrowUp") {
-              e.preventDefault();
-              prevSuggestion();
+        <form
+          className="py-2 px-4 flex items-center group text-gray-700 rounded-full"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (selectedSuggestion > -1) {
+              const query = autocompleteOptions[selectedSuggestion].value;
+              setQuery(query);
+              runSearch(query);
+            } else {
+              runSearch(query);
             }
+            setJustSearched(true);
           }}
-        />
-        {loading && <FaSpinner className="animate-spin text-gray-500" />}
-        {!loading && query.length > 0 && (
-          <FaTimesCircle
-            className="text-gray-500 cursor-pointer group-hover:opacity-100 opacity-0 text-xl"
-            onClick={() => {
-              setQuery("");
-              runSearch("");
-              updateAutocomplete("");
+        >
+          <MdSearch className="mr-2 text-gray-600 text-xl" />
+          <input
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            ref={inputElement}
+            value={query}
+            placeholder={placeholder}
+            onChange={handleChange}
+            className="w-full focus:outline-none font-light bg-transparent"
+            onKeyDown={(e) => {
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                nextSuggestion();
+              } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                prevSuggestion();
+              }
             }}
           />
-        )}
-      </form>
-      {showQuerySuggestion && (
-        <div className="absolute top-0 mt-10 left-0 right-0 bg-white text-gray-700 font-light border-b border-l border-r shadow-lg z-50">
-          {querySuggestions.map((q, i) => (
-            <div
-              onMouseDown={() => {
-                setQuery(q.value);
-                runSearch(q.value);
+          {loading && <FaSpinner className="animate-spin text-gray-500" />}
+          {!loading && query.length > 0 && (
+            <FaTimesCircle
+              className="text-gray-500 cursor-pointer group-hover:opacity-100 opacity-0 text-xl"
+              onClick={() => {
+                setQuery("");
+                runSearch("");
+                fetchAutocomplete("");
               }}
-              className={classnames(
-                "py-1 px-4 hover:bg-gray-100 cursor-pointer flex items-center",
-                {
-                  "bg-gray-100": selectedSuggestion === i,
-                }
-              )}
-            >
-              <MdSearch className="mr-2 text-gray-600" />
-              {q.value}
-            </div>
-          ))}
-        </div>
-      )}
+            />
+          )}
+        </form>
+        {showQuerySuggestion && (
+          <div className="text-gray-700 font-light pb-2">
+            {autocompleteOptions.map((q, i) => (
+              <div
+                onMouseDown={() => {
+                  setQuery(q.value);
+                  runSearch(q.value);
+                }}
+                className={classnames(
+                  "py-1 px-4 hover:bg-gray-100 cursor-pointer flex items-center",
+                  {
+                    "bg-gray-100": selectedSuggestion === i,
+                  }
+                )}
+              >
+                <div className="mr-2 text-gray-500">
+                  {q.type === "SUGGESTION" && <MdSearch />}
+                  {q.type === "RECENT" && <FaRegClock className="text-xs" />}
+                </div>
+                {q.value}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

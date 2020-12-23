@@ -7,7 +7,8 @@ module.exports = {
   variants: {
     extend: {
       display: ["group-hover"],
-      zIndex: ["hover", "active"],
+      zIndex: ["hover", "active", "focus-within"],
+      position: ["focus-within"],
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],

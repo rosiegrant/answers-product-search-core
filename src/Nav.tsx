@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import SearchBar from "./SearchBar";
-import { useAnswersStore } from "./store/useAnswersStore";
 import { Product } from "./types";
 
 type Props = {
@@ -14,11 +13,8 @@ type Props = {
 
 const Nav: React.FC<Props> = ({ shoppingCart }) => {
   const [showingCart, setShowingCart] = useState(false);
-  const { state, actions } = useAnswersStore();
-  const { loading, querySuggestions } = state;
-  const { updateAutocomplete, runSearch } = actions;
   return (
-    <div className="border-b flex justify-between items-stretch ">
+    <div className="border-b flex justify-between items-stretch h-14">
       <div className="text-xl font-light px-4 text-green-700 flex items-center">
         Seaglass
       </div>

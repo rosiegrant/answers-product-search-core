@@ -1,4 +1,9 @@
-import { AutoCompleteResult, Facet, VerticalResults } from "@yext/answers-core";
+import {
+  AutoCompleteResult,
+  Facet,
+  SortBy,
+  VerticalResults,
+} from "@yext/answers-core";
 import { createContext, Dispatch, useReducer } from "react";
 import reducer, { Action } from "./reducer";
 
@@ -9,6 +14,10 @@ export type InitialStateType = {
   entities: any[];
   facets: Facet[];
   querySuggestions: AutoCompleteResult[];
+  recentSearches: {
+    query: string;
+  }[];
+  sortBys?: SortBy[];
 };
 
 const initialState: InitialStateType = {
@@ -18,6 +27,7 @@ const initialState: InitialStateType = {
   entities: [],
   facets: [],
   querySuggestions: [],
+  recentSearches: [],
 };
 
 export const AppContext = createContext<{
