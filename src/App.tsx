@@ -111,6 +111,18 @@ function App() {
           />
         </Modal>
       )}
+      <div className="fixed right-0 bottom-0 border-l border-t bg-white z-50 text-xs text-gray-500 p-4 w-48">
+        <div>
+          This is an example React application build on top of Yext Answers.{" "}
+          <a
+            href="https://github.com/Mxs2019/answers-product-search-core"
+            target="_blank"
+            className="underline"
+          >
+            View the code on github
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

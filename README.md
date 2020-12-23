@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Answers Product Search Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a demo using of a custom build React frontend on top of Yext Answers.
+
+> Note this this project uses `yext-core` which is expected to be in the same folder as the repo itself.
 
 ## Available Scripts
 
