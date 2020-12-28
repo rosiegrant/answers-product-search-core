@@ -29,7 +29,7 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
       <div className="p-4">
         <div className=" aspect-w-4 aspect-h-2 z-10 mb-2">
           <div className="flex items-center  p-4 overflow-hidden">
-            <img src={selectedImageURL} alt="" width="100%" />
+            <img src={selectedImageURL} alt="Product" width="100%" />
           </div>
         </div>
         <div className="grid grid-cols-6">
@@ -41,7 +41,7 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
               onTouchStart={() => setSelectedImageURL(i.image.url)}
             >
               <div>
-                <img src={i.image.url} />
+                <img src={i.image.url} alt="" />
               </div>
             </div>
           ))}

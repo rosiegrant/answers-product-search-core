@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "react-circular-progressbar/dist/styles.css";
 import { FaFilter, FaSpinner, FaTimes, FaTimesCircle } from "react-icons/fa";
 import { useAnswers } from "yext-answers-react";
 import Facets from "./Facets";

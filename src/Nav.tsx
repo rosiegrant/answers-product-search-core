@@ -48,6 +48,7 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
                       <img
                         src={c.product.rawData.photoGallery[2].image.sourceUrl}
                         width="100%"
+                        alt="Cart Item"
                       />
                     </div>
                   </div>

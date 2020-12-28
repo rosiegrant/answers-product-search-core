@@ -7,7 +7,7 @@ type Props = {
   //Insert Props Here
 };
 
-const Facets: React.FC<Props> = ({}) => {
+const Facets: React.FC<Props> = () => {
   const {
     state: { facets },
     actions: { toggleFacet },

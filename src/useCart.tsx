@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaCartPlus } from "react-icons/fa";
 import { useToasts } from "react-toast-notifications";
 import { Product } from "./types";
