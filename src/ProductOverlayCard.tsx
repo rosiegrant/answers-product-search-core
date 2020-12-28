@@ -11,8 +11,10 @@ type Props = {
 };
 
 const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
+  const { name, c_shape, c_material, photoGallery, c_price } = product.rawData;
+
   const [selectedImageURL, setSelectedImageURL] = useState(
-    product.photoGallery[2].image.url
+    photoGallery[2].image.url
   );
   const buttonClassName =
     "px-4 py-3  bg-gray-100 text-gray-500 flex items-center justify-center cursor-pointer hover:bg-gray-200";
@@ -31,7 +33,7 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
           </div>
         </div>
         <div className="grid grid-cols-6">
-          {product.photoGallery.map((i, j) => (
+          {photoGallery.map((i, j) => (
             <div
               key={j}
               className="px-2 flex items-center hover:opactiy-70"
@@ -44,14 +46,12 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
             </div>
           ))}
         </div>
-        <div className="font-medium text-lg text-black mt-4">
-          {product.name}
-        </div>
+        <div className="font-medium text-lg text-black mt-4">{name}</div>
         <div className="text-gray-500 font-light text-sm">
-          {product.c_material}, {product.c_shape}
+          {c_material}, {c_shape}
         </div>
         <div className="text-gray-500 font-light text-sm">2 colors</div>
-        <div className=" font-medium mt-2 text-sm">${product.c_price}</div>
+        <div className=" font-medium mt-2 text-sm">${c_price}</div>
       </div>
       <div className="grid grid-cols-2">
         <div

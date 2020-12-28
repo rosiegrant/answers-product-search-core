@@ -2,14 +2,14 @@ import { SortBy } from "@yext/answers-core";
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { MdCheck } from "react-icons/md";
-import { useAnswersStore } from "./store/useAnswersStore";
+import { useAnswers } from "yext-answers-react";
 
 type Props = {
   //Insert Props Here
 };
 
-const SortByController: React.FC<Props> = ({}) => {
-  const { state, actions } = useAnswersStore();
+const SortByController: React.FC<Props> = () => {
+  const { actions } = useAnswers();
   const [selectedSortOption, setSelectedSortOption] = useState(0);
   const [showingOptions, setShowingOptions] = useState(false);
 

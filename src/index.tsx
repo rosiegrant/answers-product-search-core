@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ToastProvider } from "react-toast-notifications";
+import { AnswersContext } from "yext-answers-react";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import AnswersStore from "./store/AnswersStore";
 
 type ToastProps = {
   children: React.ReactNode;
@@ -17,9 +17,18 @@ const MyCustomToast = ({ children }: ToastProps) => (
 ReactDOM.render(
   <React.StrictMode>
     <ToastProvider components={{ Toast: MyCustomToast }}>
-      <AnswersStore>
+      <AnswersContext
+        config={{
+          runSearchOnLoad: true,
+          apiKey: "7bce922a5847aff36dc33345921ba700",
+          experienceKey: "dtc_demo",
+          experienceVersion: "PRODUCTION",
+          locale: "en",
+          verticalKey: "products",
+        }}
+      >
         <App />
-      </AnswersStore>
+      </AnswersContext>
     </ToastProvider>
   </React.StrictMode>,
   document.getElementById("root")

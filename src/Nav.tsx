@@ -46,15 +46,15 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
                   <div className="w-24 mr-4">
                     <div>
                       <img
-                        src={c.product.photoGallery[2].image.sourceUrl}
+                        src={c.product.rawData.photoGallery[2].image.sourceUrl}
                         width="100%"
                       />
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium">{c.product.name}</div>
+                    <div className="font-medium">{c.product.rawData.name}</div>
                     <div className="text-gray-500 text-sm">
-                      {c.quantity} x ${c.product.c_price}
+                      {c.quantity} x ${c.product.rawData.c_price}
                     </div>
                   </div>
                 </div>

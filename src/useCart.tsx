@@ -17,7 +17,7 @@ export const useCart = () => {
       let added = false;
 
       const updatedCart = cart.map((p) => {
-        if (p.product.id === product.id) {
+        if (p.product.rawData.id === product.rawData.id) {
           added = true;
           return {
             product,
@@ -37,7 +37,7 @@ export const useCart = () => {
       <div className="py-2 px-4 flex items-center font-light bg-gray-600 text-white text-sm  shadow-sm z-50 rounded-sm mb-2 mr-4 mt-4">
         <FaCartPlus />
         <div className="ml-2">Added</div>
-        <span className="font-medium ml-1">{product.name}</span>
+        <span className="font-medium ml-1">{product.rawData.name}</span>
         <div className="ml-1">to cart</div>
       </div>,
       {

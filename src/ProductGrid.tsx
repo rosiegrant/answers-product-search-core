@@ -2,8 +2,8 @@ import React from "react";
 import FlipMove from "react-flip-move";
 import { FaSpinner } from "react-icons/fa";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useAnswers } from "yext-answers-react";
 import ProductCard from "./ProductCard";
-import { useAnswersStore } from "./store/useAnswersStore";
 import { Product } from "./types";
 
 type Props = {
@@ -14,9 +14,9 @@ type Props = {
 
 const ProductGrid: React.FC<Props> = ({ onQuickLook, onAddToCart }) => {
   const {
-    state: { verticalresults, entities: products },
+    state: { verticalresults, results: products },
     actions: { loadMore },
-  } = useAnswersStore();
+  } = useAnswers();
 
   return (
     <InfiniteScroll

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "react-circular-progressbar/dist/styles.css";
 import { FaFilter, FaSpinner, FaTimes, FaTimesCircle } from "react-icons/fa";
+import { useAnswers } from "yext-answers-react";
 import Facets from "./Facets";
 import Modal from "./Modal";
 import Nav from "./Nav";
 import ProductGrid from "./ProductGrid";
 import ProductOverlayCard from "./ProductOverlayCard";
 import ResultsSummary from "./ResultsSummary";
-import { useAnswersStore } from "./store/useAnswersStore";
 import { Product } from "./types";
 import { useCart } from "./useCart";
 
@@ -19,21 +19,18 @@ function App() {
 
   const { shoppingCart, addProductToCart } = useCart();
   const {
-    state: { verticalresults, query, loading },
+    state: { verticalresults, lastSearchedTerm, loading },
     actions: { runSearch },
-  } = useAnswersStore();
-  useEffect(() => {
-    runSearch();
-  }, []);
+  } = useAnswers();
 
   return (
     <div className="mb-12 relative">
       <Nav shoppingCart={shoppingCart} />
       <div className="flex items-start">
         <div className="w-64 xl:w-72 sticky top-0 max-h-screen overflow-y-auto pb-12 hidden md:block">
-          {query.length > 0 && (
+          {lastSearchedTerm.length > 0 && (
             <div className="px-4 mt-5 flex items-center group">
-              <div className="font-medium">{query} </div>
+              <div className="font-medium">{lastSearchedTerm} </div>
 
               {!loading && (
                 <>
@@ -116,6 +113,7 @@ function App() {
           This is an example React application built on top of{" "}
           <a
             href="https://www.yext.com/products/answers"
+            rel="noreferrer"
             target="_blank"
             className="underline"
           >
@@ -124,6 +122,7 @@ function App() {
           .{" "}
           <a
             href="https://github.com/Mxs2019/answers-product-search-core"
+            rel="noreferrer"
             target="_blank"
             className="underline"
           >

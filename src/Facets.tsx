@@ -1,7 +1,7 @@
 import React from "react";
+import { useAnswers } from "yext-answers-react";
 import ColorFacet from "./ColorFacet";
 import Facet from "./Facet";
-import { useAnswersStore } from "./store/useAnswersStore";
 
 type Props = {
   //Insert Props Here
@@ -11,7 +11,7 @@ const Facets: React.FC<Props> = ({}) => {
   const {
     state: { facets },
     actions: { toggleFacet },
-  } = useAnswersStore();
+  } = useAnswers();
 
   return (
     <div className="flex flex-col px-4 pb-4 mt-4">
