@@ -17,13 +17,13 @@ const ResultsSummary: React.FC<Props> = ({ onToggleFilters }) => {
   const { verticalresults, results, appliedFilters } = state;
   return (
     <div className="flex justify-between items-center mb-2">
-      <div className="text-sm text-gray-500 flex items-center">
+      <div className="text-sm text-gray-500 flex items-center ">
         <div>
           Showing {results.length} of {verticalresults?.resultsCount} glasses
         </div>
-        <div className="border-l  ml-2  flex items-center">
+        <div className="border-l  ml-2  flex items-center flex-wrap">
           {appliedFilters.map((f) => (
-            <div className="ml-2 flex items-center" key={f.fieldId}>
+            <div className="ml-2 flex items-center " key={f.fieldId}>
               {f.displayName}:{" "}
               {f.source === "FACET" &&
                 f.values.map((v) => (
