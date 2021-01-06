@@ -34,7 +34,7 @@
     "typescript": "^3.2.1",
     "use-immer": "^0.4.2",
     "web-vitals": "^0.2.4",
-    "yext-answers-react": "^0.1.3"
+    "yext-answers-react": "^0.2.1"
   },
   "scripts": {
     "start": "craco start",
