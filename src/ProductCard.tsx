@@ -22,7 +22,7 @@ const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
     >
       <div onClick={showQuickLook}>
         <div className="aspect-w-1 aspect-h-1">
-          {photoGallery.length > 0 && (
+          {photoGallery && photoGallery.length > 0 && (
             <div className="flex items-center">
               <img src={photoGallery[0].image.url} alt="" width="100%" />
             </div>
