@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import ReactStars from "react-rating-stars-component";
 import React from "react";
 import { FaCartPlus, FaSearchPlus } from "react-icons/fa";
 import { Product } from "./types";
@@ -11,7 +12,7 @@ type Props = {
 };
 
 const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
-  const { name, photoGallery, price } = product.rawData;
+  const { name, photoGallery, price, c_averageRating } = product.rawData;
 
   return (
     <div
@@ -34,7 +35,14 @@ const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
           </div> */}
           <div className="text-gray-500 font-light text-sm">2 colors</div>
           <div className=" font-medium mt-2 text-sm">${price.value}</div>
+          <ReactStars
+          value={c_averageRating}
+          size={18}
+          isHalf={true}
+          edit={false}
+        />
         </div>
+        
       </div>
 
       <div className="flex opacity-0 md:group-hover:opacity-100 text-gray-500 uppercase text-xs transition ease-in-out  justify-center">
