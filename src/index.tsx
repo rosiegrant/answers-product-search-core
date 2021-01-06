@@ -20,8 +20,8 @@ ReactDOM.render(
       <AnswersContext
         config={{
           runSearchOnLoad: true,
-          apiKey: "7bce922a5847aff36dc33345921ba700",
-          experienceKey: "dtc_demo",
+          apiKey: "a59283fd20d998993e96988674ef4dbc",
+          experienceKey: "h_blue_pim",
           experienceVersion: "PRODUCTION",
           locale: "en",
           verticalKey: "products",
