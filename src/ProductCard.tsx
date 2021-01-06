@@ -29,7 +29,7 @@ const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
           )}
         </div>
         <div className="p-2">
-          <div className="font-medium text-black mt-4">{name}</div>
+          <div className="font-medium text-black mt-2">{name}</div>
           {/* <div className="text-gray-500 font-light text-sm">
           </div> */}
           <div className="text-gray-500 font-light text-sm">2 colors</div>
