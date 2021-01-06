@@ -10,6 +10,7 @@ export type Product = {
       currencyCode: string;
     }
     c_shape?: string;
+    c_averageRating: number;
     photoGallery: {
       image: {
         url: string;

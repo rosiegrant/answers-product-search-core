@@ -44,13 +44,15 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
               {shoppingCart.map((c) => (
                 <div className="border-b px-4 py-2 w-64 flex items-center">
                   <div className="w-24 mr-4">
+                    {c.product.rawData.photoGallery[0] && (
                     <div>
                       <img
-                        src={c.product.rawData.photoGallery[2].image.sourceUrl}
+                        src={c.product.rawData.photoGallery[0].image.sourceUrl}
                         width="100%"
                         alt="Cart Item"
                       />
                     </div>
+                    )}
                   </div>
                   <div>
                     <div className="font-medium">{c.product.rawData.name}</div>
