@@ -11,7 +11,7 @@ type Props = {
 };
 
 const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
-  const { name, c_shape, c_material, photoGallery, c_price } = product.rawData;
+  const { name, photoGallery, price } = product.rawData;
 
   return (
     <div
@@ -24,16 +24,15 @@ const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
         <div className=" aspect-w-4 aspect-h-2">
           {photoGallery.length > 0 && (
             <div className="flex items-center  p-4">
-              <img src={photoGallery[2].image.url} alt="" width="100%" />
+              <img src={photoGallery[0].image.url} alt="" width="100%" />
             </div>
           )}
         </div>
         <div className="font-medium text-black mt-4">{name}</div>
-        <div className="text-gray-500 font-light text-sm">
-          {c_material}, {c_shape}
-        </div>
+        {/* <div className="text-gray-500 font-light text-sm">
+        </div> */}
         <div className="text-gray-500 font-light text-sm">2 colors</div>
-        <div className=" font-medium mt-2 text-sm">${c_price}</div>
+        <div className=" font-medium mt-2 text-sm">${price.value}</div>
       </div>
 
       <div className="flex opacity-0 md:group-hover:opacity-100 text-gray-500 uppercase text-xs transition ease-in-out  justify-center">
