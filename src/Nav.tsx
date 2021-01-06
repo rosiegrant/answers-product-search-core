@@ -15,8 +15,8 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
   const [showingCart, setShowingCart] = useState(false);
   return (
     <div className="border-b flex justify-between items-stretch h-14">
-      <div className="text-xl font-light px-4 text-green-700 flex items-center">
-        Seaglass
+      <div className="text-xl font-medium px-4 text-blue-900 flex items-center">
+        H. Blue
       </div>
       <div className=" items-center text-gray-700 px-4 hidden md:flex">
         <div className="px-4 py-3 hover:underline cursor-pointer">Products</div>
@@ -27,7 +27,7 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
         <div className="px-4 py-3 hover:underline cursor-pointer">About Us</div>
       </div>
       <div className="flex">
-        <SearchBar placeholder="Search for glasses..." />
+        <SearchBar placeholder="Search for products..." />
         <div
           className="border-l p-4 text-gray-700 flex items-center"
           onMouseEnter={() => setShowingCart(true)}
