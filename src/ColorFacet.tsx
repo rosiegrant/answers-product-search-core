@@ -40,13 +40,13 @@ const ColorFacet: React.FC<Props> = ({
               style={{ backgroundColor: stc(o.displayName) }}
             >
               {o.selected && <MdCheck className="text-white" />}
-              {!o.selected && (
+              {/* {!o.selected && (
                 <div className="text-white text-xs opacity-60">{o.count}</div>
-              )}
+              )} */}
             </div>
 
-            <div className="text-xs text-light text-gray-600">
-              {o.displayName}
+            <div className="text-xs text-light text-center text-gray-600">
+              {o.displayName} ({o.count})
             </div>
           </div>
         ))}
