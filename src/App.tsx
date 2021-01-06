@@ -91,7 +91,7 @@ function App() {
             className="m-2 bg-gray-800 text-white p-4 text-center"
             onClick={() => setShowingMobileFilters(false)}
           >
-            Show {verticalresults?.resultsCount} Glasses
+            Show {verticalresults?.resultsCount} products
           </button>
         </div>
       )}

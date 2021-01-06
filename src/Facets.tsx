@@ -18,13 +18,13 @@ const Facets: React.FC<Props> = () => {
       {facets &&
         facets.map((f) => (
           <div key={f.fieldId}>
-            {f.fieldId !== "c_color" && (
+            {f.fieldId !== "color" && (
               <Facet
                 facet={f}
                 onSelectFacet={(o) => toggleFacet(f.fieldId, o.displayName)}
               />
             )}
-            {f.fieldId === "c_color" && (
+            {f.fieldId === "color" && (
               <ColorFacet
                 facet={f}
                 onSelectFacet={(o) => toggleFacet(f.fieldId, o.displayName)}

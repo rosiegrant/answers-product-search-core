@@ -5,6 +5,10 @@ export type Product = {
     c_color?: string[];
     c_material?: string;
     c_price?: string;
+    price: {
+      value : number;
+      currencyCode: string;
+    }
     c_shape?: string;
     photoGallery: {
       image: {

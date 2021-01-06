@@ -19,7 +19,7 @@ const ResultsSummary: React.FC<Props> = ({ onToggleFilters }) => {
     <div className="flex justify-between items-center mb-2">
       <div className="text-sm text-gray-500 flex items-center ">
         <div>
-          Showing {results.length} of {verticalresults?.resultsCount} glasses
+          Showing {results.length} of {verticalresults?.resultsCount} products
         </div>
         <div className="border-l  ml-2  flex items-center flex-wrap">
           {appliedFilters.map((f) => (
