@@ -35,7 +35,7 @@ const ColorFacet: React.FC<Props> = ({
             key={o.displayName}
             onClick={() => onSelectFacet(o)}
           >
-            <div
+            {o.displayName !== "White" && (<div
               className="h-6 w-6 rounded-full mb-1 group-hover:opactiy-75 flex items-center justify-center"
               style={{ backgroundColor: stc(o.displayName) }}
             >
@@ -44,6 +44,16 @@ const ColorFacet: React.FC<Props> = ({
                 <div className="text-white text-xs opacity-60">{o.count}</div>
               )} */}
             </div>
+            )}
+            {o.displayName === "White" && (<div
+              className="h-6 w-6 rounded-full mb-1 group-hover:opactiy-75 flex items-center justify-center border border-solid border-gray-500"
+              style={{ backgroundColor: "white"}}
+            >
+              {o.selected && <MdCheck className="text-white" />}
+              {/* {!o.selected && (
+                <div className="text-white text-xs opacity-60">{o.count}</div>
+              )} */}
+            </div>)}
 
             <div className="text-xs text-light text-center text-gray-600">
               {o.displayName} ({o.count})
