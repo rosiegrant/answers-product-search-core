@@ -26,7 +26,7 @@ function App() {
     <div className="mb-12 relative">
       <Nav shoppingCart={shoppingCart} />
       <div className="flex items-start">
-        <div className="w-64 xl:w-72 sticky top-0 max-h-screen overflow-y-auto pb-12 hidden md:block">
+        <div className="w-80 xl:w-96 sticky top-0 max-h-screen overflow-y-auto pb-12 hidden md:block">
           {lastSearchedTerm.length > 0 && (
             <div className="px-4 mt-5 flex items-center group">
               <div className="font-medium">{lastSearchedTerm} </div>
