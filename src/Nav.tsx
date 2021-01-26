@@ -18,22 +18,22 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
       <div className="w-full lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
         <ul className="list-reset lg:flex justify-start flex-1 items-center">
           <li className="mr-3 font-light">
-            <a className="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">Products</a>
+            <a className="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="/#">Products</a>
           </li>
           <li className="mr-3 font-light">
-            <a className="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">Locations</a>
+            <a className="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="/#">Locations</a>
           </li>
           <li className="mr-3 font-light">
-            <a className="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">Support</a>
+            <a className="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="/#">Support</a>
           </li>
           <li className="mr-3 font-light">
-            <a className="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">About Us</a>
+            <a className="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="/#">About Us</a>
           </li>
         </ul>
       </div>
       
         <div className="flex items-center flex-shrink-0 text-white mr-6">
-          <a className="text-white no-underline hover:text-white hover:no-underline" href="#">
+          <a className="text-white no-underline hover:text-white hover:no-underline" href="/#">
             <span className="text-2xl pl-2">H. Blue</span>
           </a>
         </div>
