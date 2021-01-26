@@ -33,7 +33,7 @@ const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
           <div className="font-medium text-black mt-2">{name}</div>
           {/* <div className="text-gray-500 font-light text-sm">
           </div> */}
-          <div className="text-gray-500 font-light text-sm">2 colors</div>
+          {/* <div className="text-gray-500 font-light text-sm">2 colors</div> */}
           {price && price.value && (
             <div className=" font-medium mt-2 text-sm">${price.value}</div>
           )}
