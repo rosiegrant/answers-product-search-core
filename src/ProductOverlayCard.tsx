@@ -47,8 +47,10 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
           ))}
         </div>
         <div className="font-medium text-lg text-black mt-4">{name}</div>
-        <div className="text-gray-500 font-light text-sm">2 colors</div>
-        <div className=" font-medium mt-2 text-sm">${price.value}</div>
+        {/* <div className="text-gray-500 font-light text-sm">2 colors</div> */}
+        {price && price.value && (
+            <div className=" font-medium mt-2 text-sm">${price.value}</div>
+          )}
       </div>
       <div className="grid grid-cols-2">
         <div

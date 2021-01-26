@@ -27,7 +27,7 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
           <div className="cursor-pointer hover:text-gray-200 hover:text-underline py-2 px-4 text-white">About Us</div>
         </div>
         <div className="flex">
-          <SearchBar placeholder="Search for glasses..." />
+          <SearchBar placeholder="Search for products..." />
           <div
             className="p-4 text-white flex items-center"
             onMouseEnter={() => setShowingCart(true)}
@@ -45,15 +45,13 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
                   <div className="border-b px-4 py-2 w-64 flex items-center">
                     <div className="w-24 mr-4">
                       <div>
-                        <img
-                          src={c.product.rawData.photoGallery[2].image.sourceUrl}
-                          width="100%"
-                          alt="Cart Item"
-                        />
+                      {c.product.rawData.photoGallery && c.product.rawData.photoGallery.length > 0 && (
+                          <img src={c.product.rawData.photoGallery[0].image.url} alt="Cart item" width="100%" />
+                      )}
                       </div>
                     </div>
                     <div>
-                      <div className="font-medium">{c.product.rawData.name}</div>
+                      <div className="text-gray-700 font-medium">{c.product.rawData.name}</div>
                       <div className="text-gray-500 text-sm">
                         {c.quantity} x ${c.product.rawData.c_price}
                       </div>

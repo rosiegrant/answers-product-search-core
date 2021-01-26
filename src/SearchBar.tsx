@@ -35,7 +35,7 @@ const SearchBar: React.FC<Props> = ({ placeholder = "Search ..." }) => {
       {isFocused && <div className="w-72"></div>}
       <div
         className={classnames(
-          "w-72 transition rounded-full ease-in-out bg-gray-100 relative duration-500 focus-within:bg-white focus-within:z-50 focus-within:absolute border border-transparent focus-within:border-gray-300 top-0"
+          "w-72 transition rounded-full ease-in-out bg-gray-100 relative duration-500 focus-within:z-50 focus-within:absolute focus-within:bg-white focus-within:border-gray-300 border-transparent top-0"
         )}
         style={
           isFocused
