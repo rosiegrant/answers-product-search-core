@@ -23,7 +23,7 @@ function App() {
   } = useAnswers();
 
   return (
-    <div className="mb-12 relative">
+    <div className="mb-12 relative font-SourceSansPro">
       <Nav shoppingCart={shoppingCart} />
       <div className="flex items-start">
         <div className="w-80 xl:w-96 sticky top-0 max-h-screen overflow-y-auto pb-12 hidden md:block">
