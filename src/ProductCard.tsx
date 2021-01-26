@@ -34,7 +34,9 @@ const ProductCard = ({ product, showQuickLook, addToCart }: Props) => {
           {/* <div className="text-gray-500 font-light text-sm">
           </div> */}
           <div className="text-gray-500 font-light text-sm">2 colors</div>
-          <div className=" font-medium mt-2 text-sm">${price.value}</div>
+          {price && price.value && (
+            <div className=" font-medium mt-2 text-sm">${price.value}</div>
+          )}
           <ReactStars
           value={c_averageRating}
           size={18}
