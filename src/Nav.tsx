@@ -27,7 +27,7 @@ const Nav: React.FC<Props> = ({ shoppingCart }) => {
           <div className="cursor-pointer hover:text-gray-200 hover:text-underline py-2 px-4 text-white">About Us</div>
         </div>
         <div className="flex">
-          <SearchBar placeholder="Search for glasses..." />
+          <SearchBar placeholder="Search for products..." />
           <div
             className="p-4 text-white flex items-center"
             onMouseEnter={() => setShowingCart(true)}
