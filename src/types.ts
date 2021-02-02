@@ -5,6 +5,7 @@ export type Product = {
     c_color?: string[];
     c_material?: string;
     c_price?: string;
+    c_sizes?: string[];
     price: {
       value : number;
       currencyCode: string;
