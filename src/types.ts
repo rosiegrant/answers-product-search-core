@@ -19,5 +19,6 @@ export type Product = {
         sourceUrl: string;
       };
     }[];
+    landingPageUrl?: string;
   };
 };

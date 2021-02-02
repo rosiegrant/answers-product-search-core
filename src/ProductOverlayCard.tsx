@@ -11,7 +11,7 @@ type Props = {
 };
 
 const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
-  const { name, photoGallery, price } = product.rawData;
+  const { name, photoGallery, price, landingPageUrl } = product.rawData;
 
   const [selectedImageURL, setSelectedImageURL] = useState(
     photoGallery[0].image.url
@@ -67,12 +67,14 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
           <FaCartPlus className="mr-2" />
           Add To Cart
         </div>
-        <div
-          className={classnames(buttonClassName, "border-t border-gray-200")}
-        >
-          <FaSearchPlus className="mr-2" />
-          View Details
-        </div>
+        <a href={landingPageUrl}>
+          <div
+            className={classnames(buttonClassName, "border-t border-gray-200")}
+          >
+            <FaSearchPlus className="mr-2" />
+            View Details
+          </div>
+        </a>
       </div>
     </div>
   );
