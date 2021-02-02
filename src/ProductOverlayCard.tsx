@@ -32,20 +32,24 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
             <img src={selectedImageURL} alt="Product" width="50%" height= "50%" />
           </div>
         </div>
-        <div className="grid grid-cols-8">
-          {photoGallery.map((i, j) => (
-            <div
-              key={j}
-              className="px-2 flex items-center hover:opactiy-70"
-              onMouseEnter={() => setSelectedImageURL(i.image.url)}
-              onTouchStart={() => setSelectedImageURL(i.image.url)}
-            >
-              <div>
-                <img src={i.image.url} alt="" />
+        {photoGallery.length > 1 && (
+
+        
+          <div className="grid grid-cols-8">
+            {photoGallery.map((i, j) => (
+              <div
+                key={j}
+                className="px-2 flex items-center hover:opactiy-70"
+                onMouseEnter={() => setSelectedImageURL(i.image.url)}
+                onTouchStart={() => setSelectedImageURL(i.image.url)}
+              >
+                <div>
+                  <img src={i.image.url} alt="" />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
         <div className="font-medium text-lg text-black mt-4">{name}</div>
         {/* <div className="text-gray-500 font-light text-sm">2 colors</div> */}
         {price && price.value && (
