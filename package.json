@@ -27,6 +27,7 @@
     "react-infinite-scroll-component": "^5.1.0",
     "react-rating-stars-component": "^2.2.0",
     "react-scripts": "4.0.1",
+    "react-select": "^4.0.2",
     "react-toast-notifications": "^2.4.0",
     "recent-searches": "^1.0.5",
     "string-to-color": "^2.2.2",
