@@ -30,7 +30,6 @@
     "react-select": "^4.0.2",
     "react-toast-notifications": "^2.4.0",
     "recent-searches": "^1.0.5",
-    "string-to-color": "^2.2.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^3.2.1",
     "use-immer": "^0.4.2",

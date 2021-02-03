@@ -2,7 +2,6 @@ import { Facet as FacetType, FacetOption } from "@yext/answers-core";
 import React from "react";
 import FlipMove from "react-flip-move";
 import { MdCheck } from "react-icons/md";
-import stc from "string-to-color";
 import FacetContainer from "./FacetContainer";
 
 type Props = {
