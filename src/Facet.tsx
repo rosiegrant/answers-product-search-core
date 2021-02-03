@@ -12,7 +12,7 @@ type Props = {
   onSelectFacet: (option: FacetOption) => void;
 };
 
-const Facet: React.FC<Props> = ({ facet, maxOptions = 10, onSelectFacet }) => {
+const Facet: React.FC<Props> = ({ facet, maxOptions = 25, onSelectFacet }) => {
   const [query] = useState("");
   const filteredOptions = facet.options
     .filter((o, i) => {
