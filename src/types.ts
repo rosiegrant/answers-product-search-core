@@ -2,6 +2,11 @@ export type Product = {
   rawData: {
     id: string;
     name: string;
+    color?: string;
+    parentProduct?: {
+      entityId: string;
+      name: string;
+    }
     c_color?: string[];
     c_material?: string;
     c_price?: string;

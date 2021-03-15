@@ -12,7 +12,15 @@ type Props = {
 };
 
 const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
-  const { name, photoGallery, price, landingPageUrl, c_sizes } = product.rawData;
+  const { name, photoGallery, price, c_sizes, color, parentProduct } = product.rawData;
+
+  var pagesUrl = "";
+  if (parentProduct && parentProduct.name) {
+    pagesUrl = 'https://pages.h-blue.com.pagescdn.com/' + parentProduct.name.replace(/\s+/g, '-').toLowerCase();
+    if (color) {
+      pagesUrl += "#" + color.replace(/\s+/g, '-').toLowerCase() + "-gallery";
+    }
+  }
 
   const [selectedImageURL, setSelectedImageURL] = useState(
     photoGallery[0].image.url
@@ -83,7 +91,7 @@ const ProductOverlayCard = ({ product, onClose, addToCart }: Props) => {
           <FaCartPlus className="mr-2" />
           Add To Cart
         </div>
-        <a href={landingPageUrl}>
+        <a href={pagesUrl}>
           <div
             className={classnames(buttonClassName, "border-t border-gray-200")}
           >
